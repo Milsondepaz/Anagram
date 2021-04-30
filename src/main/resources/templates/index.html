@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Abcfinlab – Interview Exercise</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta http-equiv="x-ua-compatible" content="ie=edge">
+                <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+                <link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />       
+                </head>
+                <body>
+
+                    <div class="container">
+
+                        
+
+
+
+                        <form class="was-validated" method="post" th:action="@{/upload}" enctype="multipart/form-data" style="padding-top: 50px;">
+
+                            <div class="custom-file">
+                                <input type="file" accept=".txt" name="file" class="form-control-file" id="validatedCustomFile" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Upload File</button>
+
+
+                            <div class="form-group" style="padding-top: 30px; padding-bottom: 30px;">
+                                <label for="exampleFormControlSelect1">Input:</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+                            </div>
+
+                            <button type="button" class="btn btn-primary" >Check anagrams</button>
+
+
+                            <div class="form-group" style="padding-top: 5px;">
+                                <label for="exampleFormControlSelect1">Output:</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                            </div>
+
+                        </form>
+                        
+                        <div class="alert alert-success" th:if="${!#strings.isEmpty(message)}"> 
+                            <span th:text="${message}"></span>                            
+                        </div>
+
+
+                    </div>
+
+
+
+
+                    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+                    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+                </body>
+                </html>
