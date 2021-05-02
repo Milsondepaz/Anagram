@@ -6,31 +6,17 @@
 package com.milsondev.abcfinlab.controller;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -61,7 +47,7 @@ public class HomeController {
 
         listWords = new ArrayList();
         listAnagram = new ArrayList();
-        
+
         TextContentToArray(pr_file);
 
         StringBuilder strAnagramGroup = new StringBuilder();
@@ -80,22 +66,21 @@ public class HomeController {
             }
             if (isAnagram) {
                 strAnagramGroup.insert(0, str1 + " ");
-                strAnagramGroup.deleteCharAt(strAnagramGroup.length() - 1);                
+                strAnagramGroup.deleteCharAt(strAnagramGroup.length() - 1);
                 listAnagram.add(strAnagramGroup.toString());
             }
             strAnagramGroup = new StringBuilder();
         }
-        
+
         String output = "";
         for (int i = 0; i < listAnagram.size(); i++) {
             output = output + listAnagram.get(i) + "\n";
         }
-        
+
         attributes.addFlashAttribute("output", output);
-                
+
         return "redirect:/";
     }
-
 
     private char[] StringToArrayChar(String str) {
         char[] ch = new char[str.length()];
@@ -130,24 +115,19 @@ public class HomeController {
     }
 
     private void TextContentToArray(MultipartFile file) throws IOException {
-        if (!file.isEmpty()) {            
+        if (!file.isEmpty()) {
             InputStreamReader inputStreamReader = null;
             try {
                 InputStream inputStream = file.getInputStream();
                 inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader br = new BufferedReader(inputStreamReader);
-                    String sCurrentLine;
-                    while ((sCurrentLine = br.readLine()) != null) {
-                        listWords.add(sCurrentLine);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+                String sCurrentLine;
+                while ((sCurrentLine = br.readLine()) != null) {
+                    listWords.add(sCurrentLine);
                 }
-            }            
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        
-        
-        
-
-    
+    }
 }
