@@ -18,44 +18,36 @@ and open the template in the editor.
                 <body>
 
                     <div class="container">
+                        <form class="was-validated" method="post" th:action="@{/upload}" enctype="multipart/form-data" style="padding-top: 80px;">
 
-                        
-
-
-
-                        <form class="was-validated" method="post" th:action="@{/upload}" enctype="multipart/form-data" style="padding-top: 50px;">
-
-                            <div class="custom-file">
+                            <div class="custom-file" style="margin-bottom: 10px;">
                                 <input type="file" accept=".txt" name="file" class="form-control-file" id="validatedCustomFile" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Upload File</button>
+                            </div>                                                        
 
+                            <button type="submit" class="btn btn-primary">Upload & Process...</button>
 
-                            <div class="form-group" style="padding-top: 30px; padding-bottom: 30px;">
-                                <label for="exampleFormControlSelect1">Input:</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
-                            </div>
-
-                            <button type="button" class="btn btn-primary" >Check anagrams</button>
-
-
-                            <div class="form-group" style="padding-top: 5px;">
+                            <div class="form-group" style="padding-top: 50px; padding-bottom: 20px;">
                                 <label for="exampleFormControlSelect1">Output:</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                <textarea disabled class="form-control" id="textcontent"  name="textcontent" rows="10" th:text="${output}"></textarea>
                             </div>
-
+                            
                         </form>
-                        
-                        <div class="alert alert-success" th:if="${!#strings.isEmpty(message)}"> 
-                            <span th:text="${message}"></span>                            
+
+                        <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${!#strings.isEmpty(message1)}">
+                            <span th:text="${message1}"></span>  
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
 
-
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert" th:if="${!#strings.isEmpty(message2)}">
+                            <span th:text="${message2}"></span>  
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        
                     </div>
-
-
-
-
                     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
                     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
                 </body>
