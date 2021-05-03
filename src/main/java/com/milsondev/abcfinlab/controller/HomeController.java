@@ -16,22 +16,33 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-/**
+/*
+ * HomeController.java Purpose: Class responsible for receiving http requests
+ * from a client (browser), forward to a specific method and return a View as an
+ * answer.
  *
- * @author Mein
+ * @author Milson
  */
 @RequestMapping
 @Controller
 public class HomeController {
 
+    //dependency injection of the AnagramService.java Class  
     @Autowired
     private AnagramService anagramService;
 
+    /*
+     * Receive a "Get" request and return the View index
+     */
     @GetMapping("/")
     public String home() {
         return "index";
     }
 
+    /*
+     * Receives a "Post" request with two parameters, the file uploaded by the user and RedirectAttributes from Spring,
+     * This second parameter will be used to send the data to be rendered by View to the client.
+     */
     @PostMapping("/upload")
     public String uploadFile(@RequestParam("file") MultipartFile pr_file, RedirectAttributes attributes) throws IOException {
         if (pr_file.isEmpty()) {
