@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.milsondev.abcfinlab.controller;
+package com.milsondev.anagram.controller;
 
-import com.milsondev.abcfinlab.service.AnagramService;
+import com.milsondev.anagram.service.AnagramService;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

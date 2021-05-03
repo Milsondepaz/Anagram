@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.milsondev</groupId>
-    <artifactId>abcfinlab</artifactId>
+    <artifactId>anagram</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>abcfinlab</name>
+    <name>Anagram</name>
     <description>abcfinlab – Interview exercise</description>
     <properties>
         <java.version>1.8</java.version>
