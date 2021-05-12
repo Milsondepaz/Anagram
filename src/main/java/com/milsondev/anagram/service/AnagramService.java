@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -68,31 +69,29 @@ public class AnagramService {
 
     /*
      * This method is the one that finally checks if two words are anagrams and returns a Boolean value.
-     * 1- A check is made if both strings have the same size.
-     * 2- All characters in both Strings are converted to lower case, if applicable.
-     * 3- The first String - str1 is traversed, acquiring the value of the ASCII table for each character
-     *    through the ^ xor operation, thus having the bits equivalent in the r variable.
-     * 4- The same process is repeated for the second String str2, the ^ xor operation, will always be done with the r variable
-     * 5- At the end, the value of the variable r is checked if both strings are the same/contain exactly the same characters,
-     * the xor operation will reset all beats, and the variable will have a value of 0.
      */
-    public boolean isAnagram(String str1, String str2) {
-        if (str1.length() == str2.length()) {
-            str1 = str1.toLowerCase();
-            str2 = str2.toLowerCase();
-            int r = 0;
+        static boolean isAnagram(String pr_str1, String pr_str2) {
 
-            for (int i = 0; i < str1.length(); i++) {
-                r = r ^ str1.charAt(i);
-            }
+        char[] str1 = pr_str1.toLowerCase().toCharArray();
+        char[] str2 = pr_str2.toLowerCase().toCharArray();
 
-            for (int i = 0; i < str2.length(); i++) {
-                r = r ^ str2.charAt(i);
-            }
+        int n1 = str1.length;
+        int n2 = str2.length;
 
-            return (r == 0);
+        if (n1 != n2) {
+            return false;
         }
-        return false;
+
+        Arrays.sort(str1);
+        Arrays.sort(str2);
+
+        for (int i = 0; i < n1; i++) {
+            if (str1[i] != str2[i]) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /*
